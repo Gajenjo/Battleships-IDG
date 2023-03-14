@@ -1,6 +1,8 @@
+import board
+import pandas as pd
+import numpy as np
 #**********************INICIO DEL JUEGO************************************************
 print("¡Bienvenido a Hundir la Flota!")
-print_board(board)
 
 while True:
     # Jugada del jugador
@@ -8,41 +10,42 @@ while True:
     usuario_colum = int(input("Adivina la columna: "))
 
     # Verificar si el jugador ha acertado
-    if usuario_fila == ship_row and usuario_colum == ship_col:
+    if tablero[usuario_fila,usuario_colum] == barco:
+    # if (usuario_fila == ship_row and usuario_colum == ship_col):
         print("¡Felicidades! ¡Hundiste mi barco!")
         break
     else:
         # Verificar si la jugada es válida
-        if usuario_fila not in range(5) or \
-            usuario_colum not in range(5):
+        if usuario_fila not in range(tablero) or \
+            usuario_colum not in range(tablero):
             print("¡Oops!, ¡esa no es una ubicación en el tablero!")
         # Verificar si ya se había intentado esa ubicación
-        elif board[usuario_fila][usuario_colum] == "X":
+        elif tablero[usuario_fila][usuario_colum] == Fallo: #añadir fallo or barco destruido
             print("Ya intentaste esa ubicación.")
         else:
             # Actualizar el tablero y marcar la jugada como intentada
             print("¡Fallaste!")
-            board[usuario_fila][usuario_colum] = "X"
+            tablero[usuario_fila][usuario_colum] = Fallo
         # Imprimir el tablero actualizado
-        print_board(board)
+        print(tablero)
     
     # Jugada de la computadora
-    comp_fila = random_row(board)
-    comp_colum = random_col(board)
+    comp_fila = np.random.randint(0,tamaño)
+    comp_colum = np.random.randint(0,tamaño)
 
     # Verificar si la maquina ha acertado. 
-    if comp_fila == ship_row and comp_colum == ship_col:
+    if tablero[comp_fila,comp_colum] == barco:
         print("¡La maquina hundió tu barco!")
         break
     else:
         # Verificar si ya se había intentado esa ubicación.
-        if board[comp_fila][comp_colum] == "X":
+        if tablero[comp_fila][comp_colum] == Fallo: #añadir fallo or barco destruido
             print("La maquina ya intentó esa ubicación.")
         else:
             # Actualizar el tablero y marcar la jugada como intentada. 
             print("La maquina falló.")
-            board[comp_fila][comp_colum] = "X"
+            tablero[comp_fila][comp_colum] = "X"
         # Imprimir el tablero actualizado. 
-        print_board(board)
+        print(tablero)
 
 
