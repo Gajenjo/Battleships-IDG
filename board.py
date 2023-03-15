@@ -130,3 +130,8 @@ def enemy_board(size=size,boat1=boat1,boat2=boat2,boat3=boat3,boat4=boat4,boat=b
         if (n_boats1 == boat1)&(n_boats2 == boat2)&(n_boats3 == boat3)&(n_boats4 == boat4):
             break
     return enemy_board
+
+def blank_board(size=size):
+    nboard = size
+    board_blank = np.full((nboard,nboard)," ")
+    return board_blank
