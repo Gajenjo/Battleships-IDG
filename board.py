@@ -1,8 +1,9 @@
 import pandas as pd
 import numpy as np
+from constants import size,boat1,boat2,boat3,boat4,boat
 
 
-def own_board (size,boat1=4,boat2=3,boat3=2,boat4=1,boat="\u26F4"):
+def own_board (size=size,boat1=boat1,boat2=boat2,boat3=boat3,boat4=boat4,boat=boat):
     '''
     Función que dado un tamaño N
     devuelve la visual de un tablero (Pandas Dataframe)
@@ -17,56 +18,55 @@ def own_board (size,boat1=4,boat2=3,boat3=2,boat4=1,boat="\u26F4"):
     El barco por defecto es "\u26F4"
     '''
     nboard = size
-    board = np.full((nboard,nboard)," ")
+    own_board = np.full((nboard,nboard)," ")
     n_boats1 = 0
     n_boats2 = 0
     n_boats3 = 0
     n_boats4 = 0
     while True:
-        barco = boat
         rng1 = np.random.randint(0, nboard)
         rng2 = np.random.randint(0, nboard)
         orientation = np.random.randint(1,3)
         if orientation == 1:
-            barco_2 = np.full((1, 2),barco)
-            barco_3 = np.full((1, 3),barco)
-            barco_4 = np.full((1, 4),barco)
-            size_until_border = board[rng1:rng1+1, rng2-1:-1]
-            while (board[rng1,rng2] != barco)&(n_boats1<boat1):
-                board[rng1,rng2]=barco
+            barco_2 = np.full((1, 2),boat)
+            barco_3 = np.full((1, 3),boat)
+            barco_4 = np.full((1, 4),boat)
+            size_until_border = own_board[rng1:rng1+1, rng2-1:-1]
+            while (own_board[rng1,rng2] != boat)&(n_boats1<boat1):
+                own_board[rng1,rng2]=boat
                 n_boats1+=1
-            while (board[rng1,rng2] != barco) & (len(barco_2[0])<=len(size_until_border[0])) & (barco not in size_until_border)&(n_boats2<boat2):
-                board[rng1:rng1+1, rng2:len(barco_2[0])+rng2]= barco_2
+            while (own_board[rng1,rng2] != boat) & (len(barco_2[0])<=len(size_until_border[0])) & (boat not in size_until_border)&(n_boats2<boat2):
+                own_board[rng1:rng1+1, rng2:len(barco_2[0])+rng2]= barco_2
                 n_boats2+=1         
-            while (board[rng1,rng2] != barco) & (len(barco_3[0])<=len(size_until_border[0])) & (barco not in size_until_border)&(n_boats3<boat3):
-                board[rng1:rng1+1, rng2:len(barco_3[0])+rng2]= barco_3
+            while (own_board[rng1,rng2] != boat) & (len(barco_3[0])<=len(size_until_border[0])) & (boat not in size_until_border)&(n_boats3<boat3):
+                own_board[rng1:rng1+1, rng2:len(barco_3[0])+rng2]= barco_3
                 n_boats3+=1
-            while (board[rng1,rng2] != barco) & (len(barco_4[0])<=len(size_until_border[0])) & (barco not in size_until_border)&(n_boats4<boat4):
-                board[rng1:rng1+1, rng2:len(barco_4[0])+rng2]= barco_4
+            while (own_board[rng1,rng2] != boat) & (len(barco_4[0])<=len(size_until_border[0])) & (boat not in size_until_border)&(n_boats4<boat4):
+                own_board[rng1:rng1+1, rng2:len(barco_4[0])+rng2]= barco_4
                 n_boats4+=1
         elif orientation == 2:
-            barco_2 = np.full((2, 1),barco)
-            barco_3 = np.full((3, 1),barco)
-            barco_4 = np.full((4, 1),barco)
-            size_until_border = board[rng1-1:-1, rng2:rng2+1]
-            while (board[rng1,rng2] != barco)&(n_boats1<boat1):
-                board[rng1,rng2]=barco
+            barco_2 = np.full((2, 1),boat)
+            barco_3 = np.full((3, 1),boat)
+            barco_4 = np.full((4, 1),boat)
+            size_until_border = own_board[rng1-1:-1, rng2:rng2+1]
+            while (own_board[rng1,rng2] != boat)&(n_boats1<boat1):
+                own_board[rng1,rng2]=boat
                 n_boats1+=1
-            while (board[rng1,rng2] != barco) & (len(barco_2)<=len(size_until_border)) & (barco not in size_until_border)&(n_boats2<boat2):
-                    board[rng1:rng1+len(barco_2), rng2:rng2+1]= barco_2
+            while (own_board[rng1,rng2] != boat) & (len(barco_2)<=len(size_until_border)) & (boat not in size_until_border)&(n_boats2<boat2):
+                    own_board[rng1:rng1+len(barco_2), rng2:rng2+1]= barco_2
                     n_boats2+=1         
-            while (board[rng1,rng2] != barco) & (len(barco_3)<=len(size_until_border)) & (barco not in size_until_border)&(n_boats3<boat3):
-                board[rng1:rng1+len(barco_3), rng2:rng2+1]= barco_3
+            while (own_board[rng1,rng2] != boat) & (len(barco_3)<=len(size_until_border)) & (boat not in size_until_border)&(n_boats3<boat3):
+                own_board[rng1:rng1+len(barco_3), rng2:rng2+1]= barco_3
                 n_boats3+=1
-            while (board[rng1,rng2] != barco) & (len(barco_4)<=len(size_until_border)) & (barco not in size_until_border)&(n_boats4<boat4):
-                board[rng1:rng1+len(barco_4), rng2:rng2+1]= barco_4
+            while (own_board[rng1,rng2] != boat) & (len(barco_4)<=len(size_until_border)) & (boat not in size_until_border)&(n_boats4<boat4):
+                own_board[rng1:rng1+len(barco_4), rng2:rng2+1]= barco_4
                 n_boats4+=1
 
         if (n_boats1 == boat1)&(n_boats2 == boat2)&(n_boats3 == boat3)&(n_boats4 == boat4):
             break
-    return (print(pd.DataFrame(board)))
+    return own_board
 
-def enemy_board(size,boat1=4,boat2=3,boat3=2,boat4=1,boat="\u26F4"):
+def enemy_board(size=size,boat1=boat1,boat2=boat2,boat3=boat3,boat4=boat4,boat=boat):
     '''
     Función hermana de own_board
 
@@ -83,51 +83,55 @@ def enemy_board(size,boat1=4,boat2=3,boat3=2,boat4=1,boat="\u26F4"):
     El barco por defecto es "\u26F4"
     '''
     nboard = size
-    board = np.full((nboard,nboard)," ")
+    enemy_board = np.full((nboard,nboard)," ")
     n_boats1 = 0
     n_boats2 = 0
     n_boats3 = 0
     n_boats4 = 0
     while True:
-        barco = "\u26F4"
         rng1 = np.random.randint(0, nboard)
         rng2 = np.random.randint(0, nboard)
         orientation = np.random.randint(1,3)
         if orientation == 1:
-            barco_2 = np.full((1, 2),barco)
-            barco_3 = np.full((1, 3),barco)
-            barco_4 = np.full((1, 4),barco)
-            size_until_border = board[rng1:rng1+1, rng2-1:-1]
-            while (board[rng1,rng2] != barco)&(n_boats1<boat1):
-                board[rng1,rng2]=barco
+            barco_2 = np.full((1, 2),boat)
+            barco_3 = np.full((1, 3),boat)
+            barco_4 = np.full((1, 4),boat)
+            size_until_border = enemy_board[rng1:rng1+1, rng2-1:-1]
+            while (enemy_board[rng1,rng2] != boat)&(n_boats1<boat1):
+                enemy_board[rng1,rng2]=boat
                 n_boats1+=1
-            while (board[rng1,rng2] != barco) & (len(barco_2[0])<=len(size_until_border[0])) & (barco not in size_until_border)&(n_boats2<boat2):
-                board[rng1:rng1+1, rng2:len(barco_2[0])+rng2]= barco_2
+            while (enemy_board[rng1,rng2] != boat) & (len(barco_2[0])<=len(size_until_border[0])) & (boat not in size_until_border)&(n_boats2<boat2):
+                enemy_board[rng1:rng1+1, rng2:len(barco_2[0])+rng2]= barco_2
                 n_boats2+=1         
-            while (board[rng1,rng2] != barco) & (len(barco_3[0])<=len(size_until_border[0])) & (barco not in size_until_border)&(n_boats3<boat3):
-                board[rng1:rng1+1, rng2:len(barco_3[0])+rng2]= barco_3
+            while (enemy_board[rng1,rng2] != boat) & (len(barco_3[0])<=len(size_until_border[0])) & (boat not in size_until_border)&(n_boats3<boat3):
+                enemy_board[rng1:rng1+1, rng2:len(barco_3[0])+rng2]= barco_3
                 n_boats3+=1
-            while (board[rng1,rng2] != barco) & (len(barco_4[0])<=len(size_until_border[0])) & (barco not in size_until_border)&(n_boats4<boat4):
-                board[rng1:rng1+1, rng2:len(barco_4[0])+rng2]= barco_4
+            while (enemy_board[rng1,rng2] != boat) & (len(barco_4[0])<=len(size_until_border[0])) & (boat not in size_until_border)&(n_boats4<boat4):
+                enemy_board[rng1:rng1+1, rng2:len(barco_4[0])+rng2]= barco_4
                 n_boats4+=1
         elif orientation == 2:
-            barco_2 = np.full((2, 1),barco)
-            barco_3 = np.full((3, 1),barco)
-            barco_4 = np.full((4, 1),barco)
-            size_until_border = board[rng1-1:-1, rng2:rng2+1]
-            while (board[rng1,rng2] != barco)&(n_boats1<boat1):
-                board[rng1,rng2]=barco
+            barco_2 = np.full((2, 1),boat)
+            barco_3 = np.full((3, 1),boat)
+            barco_4 = np.full((4, 1),boat)
+            size_until_border = enemy_board[rng1-1:-1, rng2:rng2+1]
+            while (enemy_board[rng1,rng2] != boat)&(n_boats1<boat1):
+                enemy_board[rng1,rng2]=boat
                 n_boats1+=1
-            while (board[rng1,rng2] != barco) & (len(barco_2)<=len(size_until_border)) & (barco not in size_until_border)&(n_boats2<boat2):
-                    board[rng1:rng1+len(barco_2), rng2:rng2+1]= barco_2
+            while (enemy_board[rng1,rng2] != boat) & (len(barco_2)<=len(size_until_border)) & (boat not in size_until_border)&(n_boats2<boat2):
+                    enemy_board[rng1:rng1+len(barco_2), rng2:rng2+1]= barco_2
                     n_boats2+=1         
-            while (board[rng1,rng2] != barco) & (len(barco_3)<=len(size_until_border)) & (barco not in size_until_border)&(n_boats3<boat3):
-                board[rng1:rng1+len(barco_3), rng2:rng2+1]= barco_3
+            while (enemy_board[rng1,rng2] != boat) & (len(barco_3)<=len(size_until_border)) & (boat not in size_until_border)&(n_boats3<boat3):
+                enemy_board[rng1:rng1+len(barco_3), rng2:rng2+1]= barco_3
                 n_boats3+=1
-            while (board[rng1,rng2] != barco) & (len(barco_4)<=len(size_until_border)) & (barco not in size_until_border)&(n_boats4<boat4):
-                board[rng1:rng1+len(barco_4), rng2:rng2+1]= barco_4
+            while (enemy_board[rng1,rng2] != boat) & (len(barco_4)<=len(size_until_border)) & (boat not in size_until_border)&(n_boats4<boat4):
+                enemy_board[rng1:rng1+len(barco_4), rng2:rng2+1]= barco_4
                 n_boats4+=1
 
         if (n_boats1 == boat1)&(n_boats2 == boat2)&(n_boats3 == boat3)&(n_boats4 == boat4):
             break
-    return board
+    return enemy_board
+
+def blank_board(size=size):
+    nboard = size
+    board_blank = np.full((nboard,nboard)," ")
+    return board_blank
