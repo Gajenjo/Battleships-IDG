@@ -10,7 +10,7 @@
 ## **Introducción**
 <br>
 
-Bienvenido al juego clásico *"Hundir la Flota"!* En este juego de estrategia naval, tu objetivo es hundir la flota de tu oponente antes de que él hunda la tuya.
+Bienvenido al juego clásico *"Hundir la Flota"*. En este juego de estrategia naval, tu objetivo es hundir la flota de tu oponente antes de que él hunda la tuya.
 
 <br>
 <br>
