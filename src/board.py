@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
-from constants import size,boat1,boat2,boat3,boat4,boat
+from src.constants import SIZE, BOAT, BOAT1, BOAT2, BOAT3, BOAT4
 
 
-def own_board (size=size,boat1=boat1,boat2=boat2,boat3=boat3,boat4=boat4,boat=boat):
+def own_board (size=SIZE,boat1=BOAT1,boat2=BOAT2,boat3=BOAT3,boat4=BOAT4,boat=BOAT):
     '''
     Función que dado un tamaño N
     devuelve la visual de un tablero (Pandas Dataframe)
@@ -66,7 +66,7 @@ def own_board (size=size,boat1=boat1,boat2=boat2,boat3=boat3,boat4=boat4,boat=bo
             break
     return own_board
 
-def enemy_board(size=size,boat1=boat1,boat2=boat2,boat3=boat3,boat4=boat4,boat=boat):
+def enemy_board(size=SIZE,boat1=BOAT1,boat2=BOAT2,boat3=BOAT3,boat4=BOAT4,boat=BOAT):
     '''
     Función hermana de own_board
 
@@ -131,7 +131,7 @@ def enemy_board(size=size,boat1=boat1,boat2=boat2,boat3=boat3,boat4=boat4,boat=b
             break
     return enemy_board
 
-def blank_board(size=size):
+def blank_board(size=SIZE):
     nboard = size
     board_blank = np.full((nboard,nboard)," ")
     return board_blank

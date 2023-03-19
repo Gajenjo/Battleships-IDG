@@ -1,19 +1,29 @@
 import pandas as pd
 import numpy as np
+import os
 
 import pygame
 pygame.init()
 import time
 from colorama import Fore, Style
 
+from src.constants import SIZE, BOAT, BOAT_DAMAGED, MISS
 
-from constants import size,boat,miss, boat_damaged
-from board import own_board,enemy_board,blank_board
+
+from src.board import own_board,enemy_board,blank_board
 
 #*************************************INICIO DEL JUEGO************************************************#
 
+
+size = SIZE
+boat = BOAT
+boat_damaged = BOAT_DAMAGED
+miss = MISS
+
+
+
 # Cargar sonido de explosión
-sonido_explosion = pygame.mixer.Sound('explosion-01.wav')
+sonido_explosion = pygame.mixer.Sound("asset\explosion-01.wav")
 
 # Reproducir sonido de explosión
 sonido_explosion.play()
@@ -61,6 +71,8 @@ def shoot (miss=miss,board_enemy=enemy_board(),board_own=own_board(),board_blank
             if usuario_fila.lower() == "salir":
                 print(Fore.YELLOW + "Gracias por jugar. ¡Hasta la próxima!")
                 break
+            if usuario_fila.lower() == "sorpresa":
+                os.system("src\sorpresa.py")
         
             usuario_fila = int(usuario_fila)
             usuario_colum = int(input("Adivina la columna (debe estar entre 1 y 10): "))
