@@ -72,7 +72,8 @@ def shoot (miss=miss,board_enemy=enemy_board(),board_own=own_board(),board_blank
                 print(Fore.YELLOW + "Gracias por jugar. ¡Hasta la próxima!")
                 break
             if usuario_fila.lower() == "sorpresa":
-                os.system("src\sorpresa.py")
+                os.system("python src\sorpresa.py")
+                break
         
             usuario_fila = int(usuario_fila)
             usuario_colum = int(input("Adivina la columna (debe estar entre 1 y 10): "))
